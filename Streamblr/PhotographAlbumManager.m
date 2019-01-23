@@ -56,6 +56,40 @@
     return (NSArray *)subjects;
 }
 
+
+
+- (NSArray<Photograph*>*)getAllPhotographsWithLocation:(NSString *)location{
+    NSMutableArray<Photograph*>*photographs = [[NSMutableArray<Photograph*> alloc] init];
+    
+    for (Photograph *photograph in self.album) {
+        
+        if ([[photograph location] isEqualToString:location]) {
+            [photographs addObject:photograph];
+            //NSLog(@"new subject: %@", [photograph subject]);
+        }else{
+            //NSLog(@"duplicate subject: %@", [photograph subject]);
+        }
+    }
+    return (NSArray *)photographs;
+}
+
+
+
+- (NSArray<NSString*>*)getAllLocations{
+    NSMutableArray<NSString*>*locations = [[NSMutableArray<NSString*> alloc] init];
+    
+    for (Photograph *photograph in self.album) {
+        
+        if (![locations containsObject:[photograph location]]) {
+            [locations addObject:[photograph location]];
+            //NSLog(@"new subject: %@", [photograph subject]);
+        }else{
+            //NSLog(@"duplicate subject: %@", [photograph subject]);
+        }
+    }
+    return (NSArray *)locations;
+}
+
 - (void)addAllImagesToAlbum{
     Photograph *p0 = [[Photograph alloc] initWithImageName:@"0" andSubject:@"cassandra" andLocation:@"bar"];
     
@@ -147,7 +181,13 @@
     NSMutableArray<NSString *>*tags16 = [[NSMutableArray<NSString *> alloc] initWithArray:@[[p16 subject], [p16 location], @"cuba", @"sandal", @"feet", @"sand"]];
     [p16 setTags:tags16];
     
+    Photograph *p22 = [[Photograph alloc] initWithImageName:@"carcar" andSubject:@"car" andLocation:@"hemingway house"];
+    
+    NSMutableArray<NSString *>*tags22 = [[NSMutableArray<NSString *> alloc] initWithArray:@[[p22 subject], [p22 location], @"cuba", @"cassandra", @"orange", @"earnest hemingway"]];
+    [p22 setTags:tags22];
+    
     [self.album addObject:p0];
+    [self.album addObject:p22];
     [self.album addObject:p1];
     [self.album addObject:p2];
     [self.album addObject:p3];

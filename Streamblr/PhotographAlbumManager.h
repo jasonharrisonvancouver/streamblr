@@ -23,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
 
+
+
+- (NSArray<NSString*>*)getAllLocations;
+
+- (NSArray<Photograph*>*)getAllPhotographsWithLocation:(NSString *)location;
+
 @end
 
 NS_ASSUME_NONNULL_END

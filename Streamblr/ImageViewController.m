@@ -18,16 +18,35 @@
 @property (strong, nonatomic) UICollectionViewFlowLayout *imageLayout;
 @property (strong, nonatomic) PhotographAlbumManager *albumManager;
 //@property (weak, nonatomic) IBOutlet ImageHeaderView *imageHeaderView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *groupImagesSegmentedControl;
+
+
+@property (nonatomic) BOOL sortBySubject; // NO means by location instead
 
 @end
 
 @implementation ImageViewController
 
+- (IBAction)groupImagesSegementedControlValueChanged:(UISegmentedControl *)sender {
+    if(sender.selectedSegmentIndex == 0){
+     //   NSLog(@"going to sort by subject");
+        self.sortBySubject = YES;
+    }else{
+    //    NSLog(@"going to sort by location");
+        self.sortBySubject = NO;
+    }
+   
+    [self.imageCollectionView reloadData];
+    
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.albumManager = [[PhotographAlbumManager alloc] init];
     self.imageCollectionView.dataSource = self;
-    
+    self.sortBySubject = NO;
     
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -46,11 +65,11 @@
     
     // By default, direction is vertical
     self.imageLayout.scrollDirection = UICollectionViewScrollDirectionVertical;//Horizontal;
-
-
+    
+    
     self.imageLayout.headerReferenceSize = CGSizeMake(200, 100);
-                                                      //self.imageCollectionView.frame.size.height);
-
+    //self.imageCollectionView.frame.size.height);
+    
     
     self.imageCollectionView.collectionViewLayout = self.imageLayout;
     // Add this line so headers will appear. If this line is not present, headers will not appear
@@ -71,24 +90,38 @@
      - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
      
      */
-    NSArray<NSString *>*subjects = [self.albumManager getAllSubjects];
     
-    for(int i = 0; i < [subjects count]; i++){
-        if(i == section){
-            
-            // NSLog(@"%d photos with subject %@", (int) [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count],
-            
-            //     [subjects objectAtIndex:i]
-            //   );
-            return [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count];
+    if(self.sortBySubject == YES){
+        
+        NSArray<NSString *>*subjects = [self.albumManager getAllSubjects];
+        
+        for(int i = 0; i < [subjects count]; i++){
+            if(i == section){
+                
+                // NSLog(@"%d photos with subject %@", (int) [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count],
+                
+                //     [subjects objectAtIndex:i]
+                //   );
+                return [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count];
+            }
         }
+        return [self.albumManager.album count];
+        
+    }else{
+        NSArray<NSString *>*locations = [self.albumManager getAllLocations];
+        
+        for(int i = 0; i < [locations count]; i++){
+            if(i == section){
+                
+                // NSLog(@"%d photos with subject %@", (int) [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count],
+                
+                //     [subjects objectAtIndex:i]
+                //   );
+                return [[self.albumManager getAllPhotographsWithLocation:[locations objectAtIndex:i]] count];
+            }
+        }
+        return [self.albumManager.album count];
     }
-    
-    
-    
-    
-    
-    return [self.albumManager.album count];
 }
 
 /*
@@ -114,8 +147,15 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
     
-    NSLog(@"number of subjects: %d", (int) [[self.albumManager getAllSubjects] count]);
-    return [[self.albumManager getAllSubjects] count];
+    if(self.sortBySubject == YES){
+    
+        NSLog(@"number of subjects: %d", (int) [[self.albumManager getAllSubjects] count]);
+        return [[self.albumManager getAllSubjects] count];
+    }else{
+        // location
+        NSLog(@"number of locations: %d", (int) [[self.albumManager getAllLocations] count]);
+        return [[self.albumManager getAllLocations] count];
+    }
 }
 
 
@@ -132,35 +172,51 @@
                                                                                         forIndexPath:indexPath];
     
     
-   /*
-    
-    - (Photograph *)getPhotographWithName:(NSString *)photographName;
-    - (NSArray<NSString*>*)getAllSubjects;
-    - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
-  */
+    /*
+     
+     - (Photograph *)getPhotographWithName:(NSString *)photographName;
+     - (NSArray<NSString*>*)getAllSubjects;
+     - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
+     */
     /* section indicates the index in the array of subjects */
     /* row indicates the index in the array of photographs OF that subject */
-    NSArray<NSString*>* allSubjects = [self.albumManager getAllSubjects];
-    NSString *thisSubject = [allSubjects objectAtIndex:indexPath.section];
     
-    NSArray<Photograph*>*allPhotographsWithThisSubject = [self.albumManager getAllPhotographsWithSubject:thisSubject];
+    if(self.sortBySubject == YES){
+        NSArray<NSString*>* allSubjects = [self.albumManager getAllSubjects];
+        NSString *thisSubject = [allSubjects objectAtIndex:indexPath.section];
+        
+        NSArray<Photograph*>*allPhotographsWithThisSubject = [self.albumManager getAllPhotographsWithSubject:thisSubject];
+        
+        
+        Photograph *thisPhotograph = [allPhotographsWithThisSubject objectAtIndex:indexPath.row];
+        
+        NSString *nameOfThisPhotograph = [thisPhotograph imageName];
+        
+        
+        cell.imageView.image = [UIImage imageNamed:nameOfThisPhotograph];
     
-    
-    Photograph *thisPhotograph = [allPhotographsWithThisSubject objectAtIndex:indexPath.row];
-    
-    NSString *nameOfThisPhotograph = [thisPhotograph imageName];
-    
-    
-    cell.imageView.image = [UIImage imageNamed:nameOfThisPhotograph];
-    
-    
+    }else{
+        NSArray<NSString*>* allLocations = [self.albumManager getAllLocations];
+        NSString *thisLocation = [allLocations objectAtIndex:indexPath.section];
+        
+        NSArray<Photograph*>*allPhotographsWithThisLocation = [self.albumManager getAllPhotographsWithLocation:thisLocation];
+        
+        
+        Photograph *thisPhotograph = [allPhotographsWithThisLocation objectAtIndex:indexPath.row];
+        
+        NSString *nameOfThisPhotograph = [thisPhotograph imageName];
+        
+        
+        cell.imageView.image = [UIImage imageNamed:nameOfThisPhotograph];
+        
+    }
     
     
     
     
     //  NSLog(@"image named %@", [self.albumManager.album[indexPath.row] imageName]);
     
-  //  cell.imageView.image = [UIImage imageNamed:[self.albumManager.album[indexPath.row] imageName]];
+    //  cell.imageView.image = [UIImage imageNamed:[self.albumManager.album[indexPath.row] imageName]];
     
     
     
@@ -189,18 +245,30 @@
                                                                                    withReuseIdentifier:@"imageHeaderView"
                                                                                           forIndexPath:indexPath];
         
+        if(self.sortBySubject == YES){
         
         
-        
-        NSArray<NSString*>*subjects = [self.albumManager getAllSubjects];
-        
-        NSString *subject = [[NSString alloc] init];
-        subject = [subjects objectAtIndex:[indexPath section]];
-        NSLog(@"header for section %@", subject);
-        
-        
-        headerView.headerLabel.text = [NSString stringWithFormat:@"%@", subject];
-        return headerView;
+            NSArray<NSString*>*subjects = [self.albumManager getAllSubjects];
+            
+            NSString *subject = [[NSString alloc] init];
+            subject = [subjects objectAtIndex:[indexPath section]];
+            NSLog(@"header for section %@", subject);
+            
+            
+            headerView.headerLabel.text = [NSString stringWithFormat:@"Subject: %@", subject];
+            return headerView;
+        }else{
+            // group by location
+            NSArray<NSString*>*locations = [self.albumManager getAllLocations];
+            
+            NSString *location = [[NSString alloc] init];
+            location = [locations objectAtIndex:[indexPath section]];
+            NSLog(@"header for section %@", location);
+            
+            
+            headerView.headerLabel.text = [NSString stringWithFormat:@"Location: %@", location];
+            return headerView;
+        }
     }/*
       else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
       ImageFooterView *footerView = [self.imageCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
