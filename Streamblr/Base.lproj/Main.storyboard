@@ -36,12 +36,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ywx-TY-WZz" userLabel="image view">
-                                                    <rect key="frame" x="-80" y="-58" width="240" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ywx-TY-WZz" userLabel="image view">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="Ywx-TY-WZz" firstAttribute="top" secondItem="OFn-F0-wHe" secondAttribute="top" id="1wO-QG-UjT"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ywx-TY-WZz" secondAttribute="trailing" id="B2F-zB-f6Y"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ywx-TY-WZz" secondAttribute="bottom" id="VAY-NA-V73"/>
+                                            <constraint firstItem="Ywx-TY-WZz" firstAttribute="leading" secondItem="OFn-F0-wHe" secondAttribute="leading" id="kqU-TU-aOO"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="Ywx-TY-WZz" id="aRm-Wa-eFX"/>
                                         </connections>

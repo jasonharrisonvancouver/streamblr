@@ -31,7 +31,7 @@
     
     self.imageLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    self.imageLayout.itemSize = CGSizeMake(200, 200); // Set size of cell
+    self.imageLayout.itemSize = CGSizeMake(300, 300); // Set size of cell
     self.imageLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);  // "Border around each section"
     self.imageLayout.minimumInteritemSpacing = 15;  // Minimum horizontal spacing between cells
     self.imageLayout.minimumLineSpacing = 10;  // Minimum vertical spacing
@@ -80,7 +80,7 @@
     
         
     
-    NSLog(@"image named %@", [self.albumManager.album[indexPath.row] imageName]);
+  //  NSLog(@"image named %@", [self.albumManager.album[indexPath.row] imageName]);
     
     cell.imageView.image = [UIImage imageNamed:[self.albumManager.album[indexPath.row] imageName]];
     
@@ -89,7 +89,7 @@
     
     //cell.imageView.image =   [UIImage imageNamed:@"0"];
     
-    [cell setBackgroundColor:UIColor.blueColor];
+    //[cell setBackgroundColor:UIColor.blueColor];
     return cell;
 }
 
