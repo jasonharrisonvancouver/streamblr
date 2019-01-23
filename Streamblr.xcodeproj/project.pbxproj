@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		9FD4B66321F8F86900BE348C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B66221F8F86900BE348C /* AppDelegate.m */; };
-		9FD4B66621F8F86900BE348C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B66521F8F86900BE348C /* ViewController.m */; };
+		9FD4B66621F8F86900BE348C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B66521F8F86900BE348C /* ImageViewController.m */; };
 		9FD4B66921F8F86900BE348C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4B66721F8F86900BE348C /* Main.storyboard */; };
 		9FD4B66B21F8F86900BE348C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4B66A21F8F86900BE348C /* Assets.xcassets */; };
 		9FD4B66E21F8F86900BE348C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4B66C21F8F86900BE348C /* LaunchScreen.storyboard */; };
 		9FD4B67121F8F86900BE348C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B67021F8F86900BE348C /* main.m */; };
 		9FD4B67B21F8F86900BE348C /* StreamblrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B67A21F8F86900BE348C /* StreamblrTests.m */; };
 		9FD4B68621F8F86900BE348C /* StreamblrUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B68521F8F86900BE348C /* StreamblrUITests.m */; };
+		9FD4B69521F8FAED00BE348C /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69421F8FAED00BE348C /* ImageCollectionViewCell.m */; };
+		9FD4B69821F900E600BE348C /* Photograph.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69721F900E600BE348C /* Photograph.m */; };
+		9FD4B69B21F9040A00BE348C /* PhotographAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69A21F9040A00BE348C /* PhotographAlbumManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +41,8 @@
 		9FD4B65E21F8F86900BE348C /* Streamblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streamblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD4B66121F8F86900BE348C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FD4B66221F8F86900BE348C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9FD4B66421F8F86900BE348C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9FD4B66521F8F86900BE348C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9FD4B66421F8F86900BE348C /* ImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		9FD4B66521F8F86900BE348C /* ImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		9FD4B66821F8F86900BE348C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FD4B66A21F8F86900BE348C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FD4B66D21F8F86900BE348C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +54,12 @@
 		9FD4B68121F8F86900BE348C /* StreamblrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamblrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD4B68521F8F86900BE348C /* StreamblrUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamblrUITests.m; sourceTree = "<group>"; };
 		9FD4B68721F8F86900BE348C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FD4B69321F8FAED00BE348C /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		9FD4B69421F8FAED00BE348C /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		9FD4B69621F900E600BE348C /* Photograph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photograph.h; sourceTree = "<group>"; };
+		9FD4B69721F900E600BE348C /* Photograph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photograph.m; sourceTree = "<group>"; };
+		9FD4B69921F9040A00BE348C /* PhotographAlbumManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotographAlbumManager.h; sourceTree = "<group>"; };
+		9FD4B69A21F9040A00BE348C /* PhotographAlbumManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotographAlbumManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +112,16 @@
 			children = (
 				9FD4B66121F8F86900BE348C /* AppDelegate.h */,
 				9FD4B66221F8F86900BE348C /* AppDelegate.m */,
-				9FD4B66421F8F86900BE348C /* ViewController.h */,
-				9FD4B66521F8F86900BE348C /* ViewController.m */,
+				9FD4B66421F8F86900BE348C /* ImageViewController.h */,
+				9FD4B66521F8F86900BE348C /* ImageViewController.m */,
 				9FD4B66721F8F86900BE348C /* Main.storyboard */,
+				9FD4B69621F900E600BE348C /* Photograph.h */,
+				9FD4B69721F900E600BE348C /* Photograph.m */,
+				9FD4B69921F9040A00BE348C /* PhotographAlbumManager.h */,
+				9FD4B69A21F9040A00BE348C /* PhotographAlbumManager.m */,
 				9FD4B66A21F8F86900BE348C /* Assets.xcassets */,
+				9FD4B69321F8FAED00BE348C /* ImageCollectionViewCell.h */,
+				9FD4B69421F8FAED00BE348C /* ImageCollectionViewCell.m */,
 				9FD4B66C21F8F86900BE348C /* LaunchScreen.storyboard */,
 				9FD4B66F21F8F86900BE348C /* Info.plist */,
 				9FD4B67021F8F86900BE348C /* main.m */,
@@ -262,9 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FD4B66621F8F86900BE348C /* ViewController.m in Sources */,
+				9FD4B69821F900E600BE348C /* Photograph.m in Sources */,
+				9FD4B66621F8F86900BE348C /* ImageViewController.m in Sources */,
 				9FD4B67121F8F86900BE348C /* main.m in Sources */,
+				9FD4B69521F8FAED00BE348C /* ImageCollectionViewCell.m in Sources */,
 				9FD4B66321F8F86900BE348C /* AppDelegate.m in Sources */,
+				9FD4B69B21F9040A00BE348C /* PhotographAlbumManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
