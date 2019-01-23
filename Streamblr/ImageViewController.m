@@ -9,11 +9,16 @@
 #import "ImageViewController.h"
 #import "ImageCollectionViewCell.h"
 #import "PhotographAlbumManager.h"
+#import "ImageHeaderView.h"
+#import "ImageFooterView.h"
+
 
 @interface ImageViewController ()<UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *imageCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *imageLayout;
 @property (strong, nonatomic) PhotographAlbumManager *albumManager;
+//@property (weak, nonatomic) IBOutlet ImageHeaderView *imageHeaderView;
+
 @end
 
 @implementation ImageViewController
@@ -40,18 +45,22 @@
     //    self.simpleLayout.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 50);
     
     // By default, direction is vertical
-    self.imageLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
+    self.imageLayout.scrollDirection = UICollectionViewScrollDirectionVertical;//Horizontal;
+
+
+    self.imageLayout.headerReferenceSize = CGSizeMake(200, 100);
+                                                      //self.imageCollectionView.frame.size.height);
+
     
     self.imageCollectionView.collectionViewLayout = self.imageLayout;
     // Add this line so headers will appear. If this line is not present, headers will not appear
-//    self.imageLayout.headerReferenceSize = CGSizeMake(50, self.imageCollectionView.frame.size.height);
+    //    self.imageLayout.headerReferenceSize = CGSizeMake(50, self.imageCollectionView.frame.size.height);
     
     // Add this line so footers will appear. If this line is not present, footers will not appear
-  //  self.imageLayout.footerReferenceSize = CGSizeMake(30, self.imageCollectionView.frame.size.height);
+    //  self.imageLayout.footerReferenceSize = CGSizeMake(30, self.imageCollectionView.frame.size.height);
 }
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"this many items: %d", (int)[self.albumManager.album count]);
+    // NSLog(@"this many items: %d", (int)[self.albumManager.album count]);
     
     
     /*
@@ -60,17 +69,17 @@
      - (NSArray<NSString*>*)getAllSubjects;
      
      - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
-
+     
      */
     NSArray<NSString *>*subjects = [self.albumManager getAllSubjects];
     
     for(int i = 0; i < [subjects count]; i++){
         if(i == section){
             
-            NSLog(@"%d photos with subject %@", (int) [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count],
-                  
-                  [subjects objectAtIndex:i]
-                  );
+            // NSLog(@"%d photos with subject %@", (int) [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count],
+            
+            //     [subjects objectAtIndex:i]
+            //   );
             return [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count];
         }
     }
@@ -110,17 +119,48 @@
 }
 
 
+
+
+
+
+
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     ImageCollectionViewCell *cell = [self.imageCollectionView dequeueReusableCellWithReuseIdentifier:@"imageCell"
                                                                                         forIndexPath:indexPath];
     
-        
     
-  //  NSLog(@"image named %@", [self.albumManager.album[indexPath.row] imageName]);
+   /*
     
-    cell.imageView.image = [UIImage imageNamed:[self.albumManager.album[indexPath.row] imageName]];
+    - (Photograph *)getPhotographWithName:(NSString *)photographName;
+    - (NSArray<NSString*>*)getAllSubjects;
+    - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
+  */
+    /* section indicates the index in the array of subjects */
+    /* row indicates the index in the array of photographs OF that subject */
+    NSArray<NSString*>* allSubjects = [self.albumManager getAllSubjects];
+    NSString *thisSubject = [allSubjects objectAtIndex:indexPath.section];
+    
+    NSArray<Photograph*>*allPhotographsWithThisSubject = [self.albumManager getAllPhotographsWithSubject:thisSubject];
+    
+    
+    Photograph *thisPhotograph = [allPhotographsWithThisSubject objectAtIndex:indexPath.row];
+    
+    NSString *nameOfThisPhotograph = [thisPhotograph imageName];
+    
+    
+    cell.imageView.image = [UIImage imageNamed:nameOfThisPhotograph];
+    
+    
+    
+    
+    
+    
+    //  NSLog(@"image named %@", [self.albumManager.album[indexPath.row] imageName]);
+    
+  //  cell.imageView.image = [UIImage imageNamed:[self.albumManager.album[indexPath.row] imageName]];
     
     
     
@@ -139,30 +179,42 @@
 
 
 
-/*
- - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
- viewForSupplementaryElementOfKind:(NSString *)kind
- atIndexPath:(NSIndexPath *)indexPath
- {
- if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
- MyHeaderView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
- withReuseIdentifier:@"MyHeaderView"
- forIndexPath:indexPath];
- headerView.label.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
- return headerView;
- }
- else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
- MyFooterView *footerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
- withReuseIdentifier:@"MyFooterView"
- forIndexPath:indexPath];
- footerView.label.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
- return footerView;
- }
- else {
- return nil;
- }
- }
- */
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        ImageHeaderView *headerView = [self.imageCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                   withReuseIdentifier:@"imageHeaderView"
+                                                                                          forIndexPath:indexPath];
+        
+        
+        
+        
+        NSArray<NSString*>*subjects = [self.albumManager getAllSubjects];
+        
+        NSString *subject = [[NSString alloc] init];
+        subject = [subjects objectAtIndex:[indexPath section]];
+        NSLog(@"header for section %@", subject);
+        
+        
+        headerView.headerLabel.text = [NSString stringWithFormat:@"%@", subject];
+        return headerView;
+    }/*
+      else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+      ImageFooterView *footerView = [self.imageCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+      withReuseIdentifier:@"imageFooterView"
+      forIndexPath:indexPath];
+      footerView.label.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
+      return footerView;
+      }*/
+    else {
+        //NSLog(@"no");
+        return nil;
+    }
+}
+
 
 /* roland end */
 

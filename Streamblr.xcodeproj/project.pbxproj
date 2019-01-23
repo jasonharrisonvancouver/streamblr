@@ -18,6 +18,8 @@
 		9FD4B69521F8FAED00BE348C /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69421F8FAED00BE348C /* ImageCollectionViewCell.m */; };
 		9FD4B69821F900E600BE348C /* Photograph.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69721F900E600BE348C /* Photograph.m */; };
 		9FD4B69B21F9040A00BE348C /* PhotographAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69A21F9040A00BE348C /* PhotographAlbumManager.m */; };
+		9FD4B69E21F91E9F00BE348C /* ImageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B69D21F91E9F00BE348C /* ImageHeaderView.m */; };
+		9FD4B6A121F91EB100BE348C /* ImageFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4B6A021F91EB100BE348C /* ImageFooterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		9FD4B69721F900E600BE348C /* Photograph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photograph.m; sourceTree = "<group>"; };
 		9FD4B69921F9040A00BE348C /* PhotographAlbumManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotographAlbumManager.h; sourceTree = "<group>"; };
 		9FD4B69A21F9040A00BE348C /* PhotographAlbumManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotographAlbumManager.m; sourceTree = "<group>"; };
+		9FD4B69C21F91E9F00BE348C /* ImageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageHeaderView.h; sourceTree = "<group>"; };
+		9FD4B69D21F91E9F00BE348C /* ImageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageHeaderView.m; sourceTree = "<group>"; };
+		9FD4B69F21F91EB100BE348C /* ImageFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFooterView.h; sourceTree = "<group>"; };
+		9FD4B6A021F91EB100BE348C /* ImageFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFooterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,10 @@
 				9FD4B66421F8F86900BE348C /* ImageViewController.h */,
 				9FD4B66521F8F86900BE348C /* ImageViewController.m */,
 				9FD4B66721F8F86900BE348C /* Main.storyboard */,
+				9FD4B69C21F91E9F00BE348C /* ImageHeaderView.h */,
+				9FD4B69D21F91E9F00BE348C /* ImageHeaderView.m */,
+				9FD4B69F21F91EB100BE348C /* ImageFooterView.h */,
+				9FD4B6A021F91EB100BE348C /* ImageFooterView.m */,
 				9FD4B69621F900E600BE348C /* Photograph.h */,
 				9FD4B69721F900E600BE348C /* Photograph.m */,
 				9FD4B69921F9040A00BE348C /* PhotographAlbumManager.h */,
@@ -278,6 +288,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD4B69821F900E600BE348C /* Photograph.m in Sources */,
+				9FD4B6A121F91EB100BE348C /* ImageFooterView.m in Sources */,
+				9FD4B69E21F91E9F00BE348C /* ImageHeaderView.m in Sources */,
 				9FD4B66621F8F86900BE348C /* ImageViewController.m in Sources */,
 				9FD4B67121F8F86900BE348C /* main.m in Sources */,
 				9FD4B69521F8FAED00BE348C /* ImageCollectionViewCell.m in Sources */,
