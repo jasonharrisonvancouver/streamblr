@@ -52,6 +52,33 @@
 }
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSLog(@"this many items: %d", (int)[self.albumManager.album count]);
+    
+    
+    /*
+     - (Photograph *)getPhotographWithName:(NSString *)photographName;
+     
+     - (NSArray<NSString*>*)getAllSubjects;
+     
+     - (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
+
+     */
+    NSArray<NSString *>*subjects = [self.albumManager getAllSubjects];
+    
+    for(int i = 0; i < [subjects count]; i++){
+        if(i == section){
+            
+            NSLog(@"%d photos with subject %@", (int) [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count],
+                  
+                  [subjects objectAtIndex:i]
+                  );
+            return [[self.albumManager getAllPhotographsWithSubject:[subjects objectAtIndex:i]] count];
+        }
+    }
+    
+    
+    
+    
+    
     return [self.albumManager.album count];
 }
 
@@ -71,6 +98,17 @@
  return 7;
  }
  }*/
+
+
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    
+    
+    NSLog(@"number of subjects: %d", (int) [[self.albumManager getAllSubjects] count]);
+    return [[self.albumManager getAllSubjects] count];
+}
+
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath

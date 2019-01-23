@@ -23,6 +23,39 @@
 }
 
 
+
+- (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject{
+    NSMutableArray<Photograph*>*photographs = [[NSMutableArray<Photograph*> alloc] init];
+    
+    for (Photograph *photograph in self.album) {
+        
+        if ([[photograph subject] isEqualToString:subject]) {
+            [photographs addObject:photograph];
+            //NSLog(@"new subject: %@", [photograph subject]);
+        }else{
+            //NSLog(@"duplicate subject: %@", [photograph subject]);
+        }
+    }
+    return (NSArray *)photographs;
+}
+
+
+
+- (NSArray<NSString*>*)getAllSubjects{
+    NSMutableArray<NSString*>*subjects = [[NSMutableArray<NSString*> alloc] init];
+    
+    for (Photograph *photograph in self.album) {
+        
+        if (![subjects containsObject:[photograph subject]]) {
+            [subjects addObject:[photograph subject]];
+            //NSLog(@"new subject: %@", [photograph subject]);
+        }else{
+            //NSLog(@"duplicate subject: %@", [photograph subject]);
+        }
+    }
+    return (NSArray *)subjects;
+}
+
 - (void)addAllImagesToAlbum{
     Photograph *p0 = [[Photograph alloc] initWithImageName:@"0" andSubject:@"cassandra" andLocation:@"bar"];
     

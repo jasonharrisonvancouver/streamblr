@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (Photograph *)getPhotographWithName:(NSString *)photographName;
 
+- (NSArray<NSString*>*)getAllSubjects;
+
+- (NSArray<Photograph*>*)getAllPhotographsWithSubject:(NSString *)subject;
+
 @end
 
 NS_ASSUME_NONNULL_END
